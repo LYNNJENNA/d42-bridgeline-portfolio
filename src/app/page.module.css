@@ -1,0 +1,144 @@
+/* Projects Section */
+.projectsSection {
+  padding: var(--section-spacing) 0;
+  background: var(--background);
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+/* About Section */
+.aboutSection {
+  padding: var(--section-spacing) 0;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 32px;
+  text-align: left;
+  line-height: 1.1;
+  position: relative;
+}
+
+.aboutText {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--gray-700);
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0;
+}
+
+/* Contact Section */
+.contactSection {
+  padding: var(--section-spacing) 0;
+  background: var(--gray-50);
+}
+
+.contactForm {
+  max-width: 700px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroupFull {
+  grid-column: 1 / -1;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 16px 0;
+  border: none;
+  border-bottom: 2px solid var(--gray-200);
+  font-size: 1.125rem;
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  background: transparent;
+  transition: all 0.3s ease;
+  border-radius: 0;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-bottom-color: var(--primary);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--gray-400);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.submitButton {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 20px 48px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+.submitButton:hover {
+  background: black;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sectionTitle {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .aboutText {
+    font-size: 1.25rem;
+  }
+
+  .contactForm {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+}

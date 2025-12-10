@@ -1,0 +1,327 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* height: var(--header-height); Removed fixed height for dynamic padding */
+    padding: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.headerBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.logoSection {
+    flex-shrink: 0;
+    margin-left: -20px;
+}
+
+.logoSection a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logoTextContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-left: -40px;
+}
+
+.logoImage {
+    display: block;
+    height: auto;
+    width: auto;
+    max-width: 280px;
+    max-height: calc(var(--header-height) - 24px);
+    /* Ensure it fits with padding */
+    object-fit: contain;
+}
+
+.logoText {
+    font-family: "loos-normal", sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    letter-spacing: 0.1em;
+    color: var(--foreground);
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.logoSubtext {
+    font-family: "loos-condensed", sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--gray-600);
+    white-space: nowrap;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.nav {
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navLink {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding: 8px 0;
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.navLink:hover {
+    color: var(--accent);
+}
+
+.navLink:hover::after {
+    width: 100%;
+}
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.contactInfo {
+    text-align: right;
+}
+
+.phone {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--foreground);
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.phone:hover {
+    color: var(--accent);
+}
+
+.certifications {
+    display: flex;
+    align-items: center;
+    opacity: 0.9;
+}
+
+.certImage {
+    height: auto;
+    display: block;
+}
+
+.hamburger {
+    display: none;
+}
+
+/* Responsive */
+/* Responsive */
+@media (max-width: 1024px) {
+    .nav {
+        gap: 32px;
+    }
+
+    .logoImage {
+        max-width: 180px;
+    }
+
+    .logoText {
+        font-size: 1.5rem;
+    }
+
+    .logoSubtext {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* Hide desktop nav */
+    .nav {
+        display: none;
+    }
+
+    /* Hamburger Menu Button */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+        margin-left: auto;
+        margin-right: 20px;
+        /* Push to right if needed, though flux layout handles it */
+    }
+
+    .hamburger span {
+        width: 100%;
+        height: 3px;
+        background-color: var(--foreground);
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    /* Hamburger Animation */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Mobile Menu Overlay */
+    .nav.menuOpen {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        padding: 20px;
+        animation: fadeIn 0.3s ease;
+        transform: none;
+    }
+
+    .nav.menuOpen .navLink {
+        font-size: 1.5rem;
+        color: var(--foreground);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Layout Adjustments */
+    .header {
+        height: auto;
+        /* Allow content to define height with padding */
+        padding: 20px 0;
+    }
+
+    .content {
+        flex-wrap: nowrap;
+        /* Prevent wrapping */
+    }
+
+    /* Right Section adjustments */
+    .rightSection {
+        display: none;
+        /* Hide phone/certs on mobile header to save space, or move them inside menu */
+    }
+
+    /* If we want right section in menu, we'd need to change structure. 
+       For now, let's keep it simple or maybe showing phone is important?
+       User said "mobile navigation into hamburger", implying decluttering.
+       Let's optionally show right section in the menu or hide it. 
+       Hiding it from header bar is best for preventing reflow.
+    */
+
+    /* Logo Section Adjustments */
+    .logoSection {
+        margin-left: -10px;
+        flex: 1;
+        /* Allow logo to take space left of hamburger */
+    }
+
+    .logoTextContainer {
+        margin-left: -40px;
+    }
+
+    .logoImage {
+        max-width: 160px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .logoSection {
+        margin-left: 0;
+    }
+
+    .logoTextContainer {
+        margin-left: -35px;
+    }
+
+    .logoImage {
+        max-width: 140px;
+    }
+
+    .logoText {
+        font-size: 1.25rem;
+    }
+
+    .logoSubtext {
+        font-size: 0.65rem;
+    }
+}
